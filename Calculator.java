@@ -15,41 +15,41 @@ public class Calculator extends Application {
 	public void start(Stage primaryStage){
 		
 		//Create menu & menuBar
-		Menu visiable = new Menu("æª¢è¦–(V)");
-		Menu edit = new Menu("ç·¨è¼¯(E)");
-		Menu explan = new Menu("èªªæ˜(H)");
+		Menu visiable = new Menu("ÀËµø(V)");
+		Menu edit = new Menu("½s¿è(E)");
+		Menu explan = new Menu("»¡©ú(H)");
 		MenuBar mainMenu = new MenuBar();
 		
 		//Add menu to menu bar
 		mainMenu.getMenus().addAll(visiable, edit, explan);
 		
-		//Create menu item
-		MenuItem basic = new MenuItem("æ¨™æº–å‹(T)\t\tAlt+1");
-		MenuItem engineer = new MenuItem("å·¥ç¨‹å‹(S)\t\tAlt+2");
-		MenuItem program = new MenuItem("ç¨‹å¼è¨­è¨ˆå¸«(P)\tAlt+3");
-		MenuItem count = new MenuItem("çµ±è¨ˆè³‡æ–™(A)\t\tAlt+4");
-		MenuItem record = new MenuItem("æ­·ç¨‹è¨˜éŒ„(Y)\t\tAlt+H");
-		MenuItem digit = new MenuItem("æ•¸å­—åˆ†ä½(I)");
-		MenuItem basic1 = new MenuItem("åŸºæœ¬(B)\t\t\tAlt+F4");
-		MenuItem alter = new MenuItem("å–®ä½è½‰æ›(U)\t\tAlt+U");
-		MenuItem date = new MenuItem("æ—¥æœŸè¨ˆç®—(D)\t\tAlt+E");
-		MenuItem work = new MenuItem("å·¥ä½œè¡¨(W)");
+		//Create menu items
+		MenuItem basic = new MenuItem("¼Ğ·Ç«¬(T)\t\tAlt+1");
+		MenuItem engineer = new MenuItem("¤uµ{«¬(S)\t\tAlt+2");
+		MenuItem program = new MenuItem("µ{¦¡³]­p®v(P)\tAlt+3");
+		MenuItem count = new MenuItem("²Î­p¸ê®Æ(A)\t\tAlt+4");
+		MenuItem record = new MenuItem("¾úµ{°O¿ı(Y)\t\tAlt+H");
+		MenuItem digit = new MenuItem("¼Æ¦r¤À¦ì(I)");
+		MenuItem basic1 = new MenuItem("°ò¥»(B)\t\t\tAlt+F4");
+		MenuItem alter = new MenuItem("³æ¦ìÂà´«(U)\t\tAlt+U");
+		MenuItem date = new MenuItem("¤é´Á­pºâ(D)\t\tAlt+E");
+		MenuItem work = new MenuItem("¤u§@ªí(W)");
 		
 		//Add menu items to menu
 		visiable.getItems().addAll(basic, engineer, program, count, record,
 		digit, basic1, alter, date, work);
 		
 		//Create menu items
-		MenuItem copy = new MenuItem("è¤‡è£½(C)\t\tCtrl+C");
-		MenuItem paste = new MenuItem("è²¼ä¸Š(P)\t\tCtrl+V");
-		MenuItem record1 = new MenuItem("æ­·ç¨‹è¨˜éŒ„(H)");
+		MenuItem copy = new MenuItem("½Æ»s(C)\t\tCtrl+C");
+		MenuItem paste = new MenuItem("¶K¤W(P)\t\tCtrl+V");
+		MenuItem record1 = new MenuItem("¾úµ{°O¿ı(H)");
 		
 		//Add menu items to menu
 		edit.getItems().addAll(copy, paste, record1);
 		
-		//Create menu items
-		MenuItem viewExplan = new MenuItem("æª¢è¦–èªªæ˜(V)\t\tF1");
-		MenuItem about = new MenuItem("é—œæ–¼å°ç®—ç›¤(A)");
+		//Create menu item
+		MenuItem viewExplan = new MenuItem("ÀËµø»¡©ú(V)\t\tF1");
+		MenuItem about = new MenuItem("Ãö©ó¤pºâ½L(A)");
 		
 		//Add menu items to menu
 		explan.getItems().addAll(viewExplan, about);	
@@ -59,7 +59,7 @@ public class Calculator extends Application {
 		textField.setAlignment(Pos.CENTER_RIGHT);
 		textField.setEditable(false);
 		
-		//Create buttons	
+		//Create buttons		
 		Button zero = new Button("0");
 		Button one = new Button("1");
 		Button two = new Button("2");
@@ -73,7 +73,7 @@ public class Calculator extends Application {
 		Button plus = new Button("+");
 		Button minus = new Button("-");
 		Button cross = new Button("*");
-		Button divide = new Button("Ã·");
+		Button divide = new Button("¡Ò");
 		Button mc = new Button("MC");
 		Button mr = new Button("MR");
 		Button ms = new Button("MS");
@@ -82,8 +82,8 @@ public class Calculator extends Application {
 		Button delete = new Button("<--");
 		Button ce = new Button("CE");
 		Button c = new Button("C");
-		Button mark = new Button("Â±");
-		Button root = new Button("âˆš");
+		Button mark = new Button("¡Ó");
+		Button root = new Button("¡Ô");
 		Button percent = new Button("%");
 		Button divide1 = new Button("1/x");
 		Button equal = new Button("=");
@@ -118,10 +118,76 @@ public class Calculator extends Application {
 		dot.setPrefSize(40,20);		
 		zero.setPrefSize(85,20);
 		equal.setPrefSize(40,50);
-
-		//Create pane
+		
+		//Set action for buttons
+		zero.setOnAction(e -> {
+			display += "0";
+			textField.setText(display);
+		});
+		one.setOnAction(e -> {
+			display += "1";
+			textField.setText(display);
+		});
+		two.setOnAction(e -> {
+			display += "2";
+			textField.setText(display);
+		});
+		three.setOnAction(e -> {
+			display += "3";
+			textField.setText(display);
+		});
+		four.setOnAction(e -> {
+			display += "4";
+			textField.setText(display);
+		});
+		five.setOnAction(e -> {
+			display += "5";
+			textField.setText(display);
+		});
+		six.setOnAction(e -> {
+			display += "6";
+			textField.setText(display);
+		});
+		seven.setOnAction(e -> {
+			display += "7";
+			textField.setText(display);
+		});
+		eight.setOnAction(e -> {
+			display += "8";
+			textField.setText(display);
+		});
+		nine.setOnAction(e -> {
+			display += "9";
+			textField.setText(display);
+		});
+		plus.setOnAction(e -> {
+			display += "+";
+			textField.setText(display);
+		});
+		minus.setOnAction(e -> {
+			display += "-";
+			textField.setText(display);
+		});
+		cross.setOnAction(e -> {
+			display += "x";
+			textField.setText(display);
+		});
+		divide.setOnAction(e -> {
+			display += "¡Ò";
+			textField.setText(display);
+		});
+		delete.setOnAction(e -> {
+			display = display.substring(0,display.length() - 1);
+			textField.setText(display);
+		});
+		c.setOnAction(e -> {
+			display = "";
+			textField.setText(display);
+		});
+		
+		//Create pane, HBox, VBox 
 		StackPane paneTextField = new StackPane();			
-		Pane pane = new VBox(5);		
+		Pane pane = new VBox(5);
 		HBox h1 = new HBox(5);
 		HBox h2 = new HBox(5);
 		HBox h3 = new HBox(5);
@@ -137,9 +203,9 @@ public class Calculator extends Application {
 		h5.getChildren().addAll(one,two,three,minus);
 		h6.getChildren().addAll(zero,dot,plus);
 		v1.getChildren().addAll(h5,h6);
-		h7.getChildren().addAll(v1,equal);
+		h7.getChildren().addAll(v1,equal);		
 		
-		//Add text field to paneTextField
+		//Add a text field to paneTextField
 		paneTextField.getChildren().add(textField);			
 		pane.getChildren().add(mainMenu);
 		pane.getChildren().add(paneTextField);
@@ -156,5 +222,5 @@ public class Calculator extends Application {
 		primaryStage.setTitle("U10416020 Calculator");
 		primaryStage.setScene(scene);
 		primaryStage.show();		
-	}	
+	}
 }
