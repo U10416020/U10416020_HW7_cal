@@ -7,13 +7,23 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import java.util.*;
 
 public class Calculator extends Application {
+	//Data fields
+	public ArrayList<Double> memory = new ArrayList<Double>();
+	public ArrayList<String> memory_symbol = new ArrayList<String>();
 	public String display = "";
+	public String remember = "";
+	public String compute = "";
+	public double result;
+	public double memory_result;
+	public char symbol = 'b';	
+	public boolean has_symbol = false;	
+	
 	//Override the start method in the Application class
 	@Override
-	public void start(Stage primaryStage){
-		
+	public void start(Stage primaryStage){		
 		//Create menu & menuBar
 		Menu visiable = new Menu("ภหต๘(V)");
 		Menu edit = new Menu("ฝsฟ่(E)");
@@ -119,72 +129,6 @@ public class Calculator extends Application {
 		zero.setPrefSize(85,20);
 		equal.setPrefSize(40,50);
 		
-		//Set action for buttons
-		zero.setOnAction(e -> {
-			display += "0";
-			textField.setText(display);
-		});
-		one.setOnAction(e -> {
-			display += "1";
-			textField.setText(display);
-		});
-		two.setOnAction(e -> {
-			display += "2";
-			textField.setText(display);
-		});
-		three.setOnAction(e -> {
-			display += "3";
-			textField.setText(display);
-		});
-		four.setOnAction(e -> {
-			display += "4";
-			textField.setText(display);
-		});
-		five.setOnAction(e -> {
-			display += "5";
-			textField.setText(display);
-		});
-		six.setOnAction(e -> {
-			display += "6";
-			textField.setText(display);
-		});
-		seven.setOnAction(e -> {
-			display += "7";
-			textField.setText(display);
-		});
-		eight.setOnAction(e -> {
-			display += "8";
-			textField.setText(display);
-		});
-		nine.setOnAction(e -> {
-			display += "9";
-			textField.setText(display);
-		});
-		plus.setOnAction(e -> {
-			display += "+";
-			textField.setText(display);
-		});
-		minus.setOnAction(e -> {
-			display += "-";
-			textField.setText(display);
-		});
-		cross.setOnAction(e -> {
-			display += "x";
-			textField.setText(display);
-		});
-		divide.setOnAction(e -> {
-			display += "กา";
-			textField.setText(display);
-		});
-		delete.setOnAction(e -> {
-			display = display.substring(0,display.length() - 1);
-			textField.setText(display);
-		});
-		c.setOnAction(e -> {
-			display = "";
-			textField.setText(display);
-		});
-		
 		//Create pane, HBox, VBox 
 		StackPane paneTextField = new StackPane();			
 		Pane pane = new VBox(5);
@@ -221,6 +165,317 @@ public class Calculator extends Application {
 		//Set stage
 		primaryStage.setTitle("U10416020 Calculator");
 		primaryStage.setScene(scene);
-		primaryStage.show();		
+		primaryStage.show();
+		
+		//Set action for buttons
+		//Add character to a variable named display to show what user key in
+		//Add character to compute to calculate
+		zero.setOnAction(e -> {
+			display += "0";
+			compute += "0";
+			textField.setText(display);
+		});
+		one.setOnAction(e -> {
+			display += "1";
+			compute += "1";
+			textField.setText(display);
+		});
+		two.setOnAction(e -> {
+			display += "2";
+			compute += "2";
+			textField.setText(display);
+		});
+		three.setOnAction(e -> {
+			display += "3";
+			compute += "3";
+			textField.setText(display);
+		});
+		four.setOnAction(e -> {
+			display += "4";
+			compute += "4";
+			textField.setText(display);
+		});
+		five.setOnAction(e -> {
+			display += "5";
+			compute += "5";
+			textField.setText(display);
+		});
+		six.setOnAction(e -> {
+			display += "6";
+			compute += "6";
+			textField.setText(display);
+		});
+		seven.setOnAction(e -> {
+			display += "7";
+			compute += "7";
+			textField.setText(display);
+		});
+		eight.setOnAction(e -> {
+			display += "8";
+			compute += "8";
+			textField.setText(display);
+		});
+		nine.setOnAction(e -> {
+			display += "9";
+			compute += "9";
+			textField.setText(display);
+		});
+		dot.setOnAction(e -> {
+			display += ".";
+			compute += ".";
+			textField.setText(display);
+		});
+		
+		//Change symbol to know which operation should be used to calculate
+		//Use if-else to check if compute has symbol to calculate
+		plus.setOnAction(e -> {	
+			if(has_symbol == false){
+				result = Double.valueOf(compute);
+				has_symbol = true;
+			}
+			else{
+				if(display.charAt(display.length()-1) == symbol){
+					display = display.substring(0,display.length() - 1);
+				}
+				else{
+					setRemember();
+					calculate();
+				}	
+			}			
+			display += "+";
+			compute += "+";
+			symbol = '+';
+			textField.setText(display);
+		});
+		minus.setOnAction(e -> {
+			if(has_symbol == false){
+				result = Double.valueOf(compute);
+				has_symbol = true;
+			}
+			else{
+				if(display.charAt(display.length()-1) == symbol)
+					display = display.substring(0,display.length() - 1);
+				else{
+					setRemember();
+					calculate();
+				}
+			}				
+			display += "-";
+			compute += "-";
+			symbol = '-';
+			textField.setText(display);
+		});
+		cross.setOnAction(e -> {
+			if(has_symbol == false){
+				result = Double.valueOf(compute);
+				has_symbol = true;
+			}
+			else{
+				if(display.charAt(display.length()-1) == symbol)
+					display = display.substring(0,display.length() - 1);
+				else{
+					setRemember();
+					calculate();
+				}
+			}			
+			display += "x";
+			compute += "x";
+			symbol = 'x';
+			textField.setText(display);
+		});
+		divide.setOnAction(e -> {	
+			if(has_symbol == false){
+				result = Double.valueOf(compute);
+				has_symbol = true;
+			}
+			else{
+				if(display.charAt(display.length()-1) == symbol)
+					display = display.substring(0,display.length() - 1);
+				else{
+					setRemember();
+					calculate();
+				}
+			}			
+			display += "กา";
+			compute += "กา";
+			symbol = 'กา';
+			textField.setText(display);
+		});
+		
+		//Function to delete the last character
+		delete.setOnAction(e -> {
+			display = display.substring(0,display.length() - 1);
+			compute = compute.substring(0,compute.length() - 1);
+			textField.setText(display);
+		});
+		
+		//Function to clear all 
+		c.setOnAction(e -> {
+			display = "";
+			compute = "";
+			result = 0;
+			remember = "";
+			symbol = 'b';
+			has_symbol = false;				
+			textField.setText(display);
+		});
+		
+		//Function to clear the last number
+		ce.setOnAction(e -> {
+			if(has_symbol == true){
+				display = display.substring(0,display.length() - display.lastIndexOf(symbol));
+				compute = compute.substring(0,compute.length() - compute.lastIndexOf(symbol));
+			}	
+			else{
+				display = "";
+				compute = "";
+			}
+			textField.setText(display);
+		});
+		
+		//Function to display the result
+		equal.setOnAction(e -> {				
+			setRemember();
+			calculate();			
+			display = String.valueOf(result);
+			compute = display;
+			symbol = 'b';
+			has_symbol = false;				
+			textField.setText(display);
+		});	
+		
+		//Function to remember current result and prepare to add next result
+		mplus.setOnAction(e -> {						
+			memory.add(result);
+			memory_symbol.add("+");
+		});
+		
+		//Function to remember current result and prepare to minus next result
+		mminus.setOnAction(e -> {			
+			memory.add(result);
+			memory_symbol.set(memory_symbol.size()-1,"-");
+		});
+		
+		//Function to display the result which is use M+ or M- to calculate
+		mr.setOnAction(e -> {
+			calculateMemory();
+			textField.setText(String.valueOf(memory_result));
+		});
+		
+		//Function to clear the numbers in memory
+		mc.setOnAction(e -> {
+			memory.clear();
+			memory_symbol.clear();
+			memory_result = 0;
+		});
+		
+		//Function to replace the numbers in memory with current number
+		ms.setOnAction(e -> {
+			memory.clear();
+			setRemember();
+			calculate();
+			memory.add(result);
+		});
+		
+		//Function to divide the number by 100
+		percent.setOnAction(e -> {
+			setRemember();
+			compute = compute.substring(0,compute.length() - remember.length());
+			remember = String.valueOf(Double.valueOf(remember) / 100);
+			compute += remember;
+			display += "%";
+			textField.setText(display);
+			remember = "";			
+		});
+		
+		//Function to calculate square root
+		root.setOnAction( e -> {
+			setRemember();			
+			display = display.substring(0,display.length() - remember.length());
+			compute = compute.substring(0,compute.length() - remember.length());
+			display += "กิ"+remember;
+			remember = String.valueOf(Math.sqrt(Double.valueOf(remember)));	
+			textField.setText(display);			
+			compute += remember;
+			remember = "";			
+		});
+		
+		//Funtion to divide the number and if number is 0, display error
+		divide1.setOnAction(e -> {
+			setRemember();
+			display = display.substring(0,display.length() - remember.length());
+			compute = compute.substring(0,compute.length() - remember.length());
+			display += "1/"+remember;
+			if((Double.valueOf(remember)) == 0)
+				symbol = 'e';
+			else{
+				remember = String.valueOf(1/(Double.valueOf(remember)));
+				compute += remember;
+			}					
+			textField.setText(display);				
+			remember = "";			
+		});
+		
+		//Function to change plus or minus sign
+		mark.setOnAction(e -> {
+			setRemember();			
+			if(symbol == 'b'){
+				calculate();
+				result *= (-1);
+				display = String.valueOf(result);
+				compute = display;
+				textField.setText(display);
+			}
+			remember = "";						
+		});
+	}
+	
+	//Mutator method to select number form compute and store in remember
+	public void setRemember(){			
+		for(int i = 1+compute.lastIndexOf(symbol); i < compute.length();i++){
+			System.out.println("I: " + i);
+			remember += compute.charAt(i);	
+		}			
+	}
+	
+	//Method to calculate
+	public void calculate(){		
+		switch(symbol){
+			case '+':				
+				result += Double.valueOf(remember);
+				break;
+			case '-':
+				result -= Double.valueOf(remember);
+				break;
+			case 'x':
+				result *= Double.valueOf(remember);
+				break;
+			case 'กา':
+				result /= Double.valueOf(remember);
+				break;
+			case 'กิ':
+				result = Math.sqrt(Double.valueOf(remember));
+				break;
+			case 'e':
+				display = "ERROR";				
+				break;
+			case 'b':
+				result = Double.valueOf(remember);
+				break;
+		}
+		remember = "";		
+	}
+	
+	//Calculate the result
+	public void calculateMemory(){
+		memory_result = memory.get(0);
+		for(int i = 0; i < memory_symbol.size();i++){
+			if(memory_symbol.get(i) == "+"){
+				memory_result += memory.get(i+1);
+			}
+			else{
+				memory_result -= memory.get(i+1);
+			}				
+		}
 	}
 }
