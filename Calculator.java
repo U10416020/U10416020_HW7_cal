@@ -25,41 +25,41 @@ public class Calculator extends Application {
 	@Override
 	public void start(Stage primaryStage){		
 		//Create menu & menuBar
-		Menu visiable = new Menu("ÀËµø(V)");
-		Menu edit = new Menu("½s¿è(E)");
-		Menu explan = new Menu("»¡©ú(H)");
+		Menu visiable = new Menu("æª¢è¦–(V)");
+		Menu edit = new Menu("ç·¨è¼¯(E)");
+		Menu explan = new Menu("èªªæ˜(H)");
 		MenuBar mainMenu = new MenuBar();
 		
 		//Add menu to menu bar
 		mainMenu.getMenus().addAll(visiable, edit, explan);
 		
 		//Create menu items
-		MenuItem basic = new MenuItem("¼Ğ·Ç«¬(T)\t\tAlt+1");
-		MenuItem engineer = new MenuItem("¤uµ{«¬(S)\t\tAlt+2");
-		MenuItem program = new MenuItem("µ{¦¡³]­p®v(P)\tAlt+3");
-		MenuItem count = new MenuItem("²Î­p¸ê®Æ(A)\t\tAlt+4");
-		MenuItem record = new MenuItem("¾úµ{°O¿ı(Y)\t\tAlt+H");
-		MenuItem digit = new MenuItem("¼Æ¦r¤À¦ì(I)");
-		MenuItem basic1 = new MenuItem("°ò¥»(B)\t\t\tAlt+F4");
-		MenuItem alter = new MenuItem("³æ¦ìÂà´«(U)\t\tAlt+U");
-		MenuItem date = new MenuItem("¤é´Á­pºâ(D)\t\tAlt+E");
-		MenuItem work = new MenuItem("¤u§@ªí(W)");
+		MenuItem basic = new MenuItem("æ¨™æº–å‹(T)\t\tAlt+1");
+		MenuItem engineer = new MenuItem("å·¥ç¨‹å‹(S)\t\tAlt+2");
+		MenuItem program = new MenuItem("ç¨‹å¼è¨­è¨ˆå¸«(P)\tAlt+3");
+		MenuItem count = new MenuItem("çµ±è¨ˆè³‡æ–™(A)\t\tAlt+4");
+		MenuItem record = new MenuItem("æ­·ç¨‹è¨˜éŒ„(Y)\t\tAlt+H");
+		MenuItem digit = new MenuItem("æ•¸å­—åˆ†ä½(I)");
+		MenuItem basic1 = new MenuItem("åŸºæœ¬(B)\t\t\tAlt+F4");
+		MenuItem alter = new MenuItem("å–®ä½è½‰æ›(U)\t\tAlt+U");
+		MenuItem date = new MenuItem("æ—¥æœŸè¨ˆç®—(D)\t\tAlt+E");
+		MenuItem work = new MenuItem("å·¥ä½œè¡¨(W)");
 		
 		//Add menu items to menu
 		visiable.getItems().addAll(basic, engineer, program, count, record,
 		digit, basic1, alter, date, work);
 		
 		//Create menu items
-		MenuItem copy = new MenuItem("½Æ»s(C)\t\tCtrl+C");
-		MenuItem paste = new MenuItem("¶K¤W(P)\t\tCtrl+V");
-		MenuItem record1 = new MenuItem("¾úµ{°O¿ı(H)");
+		MenuItem copy = new MenuItem("è¤‡è£½(C)\t\tCtrl+C");
+		MenuItem paste = new MenuItem("è²¼ä¸Š(P)\t\tCtrl+V");
+		MenuItem record1 = new MenuItem("æ­·ç¨‹è¨˜éŒ„(H)");
 		
 		//Add menu items to menu
 		edit.getItems().addAll(copy, paste, record1);
 		
 		//Create menu item
-		MenuItem viewExplan = new MenuItem("ÀËµø»¡©ú(V)\t\tF1");
-		MenuItem about = new MenuItem("Ãö©ó¤pºâ½L(A)");
+		MenuItem viewExplan = new MenuItem("æª¢è¦–èªªæ˜(V)\t\tF1");
+		MenuItem about = new MenuItem("é—œæ–¼å°ç®—ç›¤(A)");
 		
 		//Add menu items to menu
 		explan.getItems().addAll(viewExplan, about);	
@@ -83,7 +83,7 @@ public class Calculator extends Application {
 		Button plus = new Button("+");
 		Button minus = new Button("-");
 		Button cross = new Button("*");
-		Button divide = new Button("¡Ò");
+		Button divide = new Button("Ã·");
 		Button mc = new Button("MC");
 		Button mr = new Button("MR");
 		Button ms = new Button("MS");
@@ -92,8 +92,8 @@ public class Calculator extends Application {
 		Button delete = new Button("<--");
 		Button ce = new Button("CE");
 		Button c = new Button("C");
-		Button mark = new Button("¡Ó");
-		Button root = new Button("¡Ô");
+		Button mark = new Button("Â±");
+		Button root = new Button("âˆš");
 		Button percent = new Button("%");
 		Button divide1 = new Button("1/x");
 		Button equal = new Button("=");
@@ -296,9 +296,9 @@ public class Calculator extends Application {
 					calculate();
 				}
 			}			
-			display += "¡Ò";
-			compute += "¡Ò";
-			symbol = '¡Ò';
+			display += "Ã·";
+			compute += "Ã·";
+			symbol = 'Ã·';
 			textField.setText(display);
 		});
 		
@@ -393,7 +393,7 @@ public class Calculator extends Application {
 			setRemember();			
 			display = display.substring(0,display.length() - remember.length());
 			compute = compute.substring(0,compute.length() - remember.length());
-			display += "¡Ô"+remember;
+			display += "âˆš"+remember;
 			remember = String.valueOf(Math.sqrt(Double.valueOf(remember)));	
 			textField.setText(display);			
 			compute += remember;
@@ -433,7 +433,6 @@ public class Calculator extends Application {
 	//Mutator method to select number form compute and store in remember
 	public void setRemember(){			
 		for(int i = 1+compute.lastIndexOf(symbol); i < compute.length();i++){
-			System.out.println("I: " + i);
 			remember += compute.charAt(i);	
 		}			
 	}
@@ -450,10 +449,10 @@ public class Calculator extends Application {
 			case 'x':
 				result *= Double.valueOf(remember);
 				break;
-			case '¡Ò':
+			case 'Ã·':
 				result /= Double.valueOf(remember);
 				break;
-			case '¡Ô':
+			case 'âˆš':
 				result = Math.sqrt(Double.valueOf(remember));
 				break;
 			case 'e':
